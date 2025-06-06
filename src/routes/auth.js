@@ -16,7 +16,7 @@ router.post('/login', authLimiter, AuthController.login);
 router.post('/register', AuthController.registerNew);
 
 //Apply create Driver_tbl rate limiter to registration
-router.post('/driver-registration', AuthController.registerDriver);   
+router.post('/driver-registration',authenticateToken, AuthController.registerDriver);   
 //vehicle
 router.post('/vehicle-new' , AuthController.registerVehicle); // Assuming this is for vehicle registration
 // Apply auth rate limiter to token refresh

@@ -1,21 +1,5 @@
-/**
- * DTO for driver_tbl + driver_status_tbl
- * ───────────────────────────────────────
- * driver_tbl columns:
- *   d_id (PK, int)
- *   license_no (varchar)
- *   d_name (varchar)
- *   v_owner_name (varchar)
- *   v_org_name (varchar, nullable)
- *   v_org_id (varchar, nullable)
- *   d_status (varchar)            – e.g. 'active' | 'inactive' | 'blocked'
- *
- * driver_status_tbl columns:
- *   status  (varchar)             – mirrors d_status or other workflow status
- *   reg_id  (varchar)             – FK to registration_tbl
- *   d_id    (int)                 – FK to driver_tbl
- */
-class DriverDto {
+
+class DriverRequestDTO {
   constructor(data) {
     // ✅ driver_tbl fields
     this.d_id = data.d_id;                        // primary key (supply if not auto-inc)
@@ -82,4 +66,4 @@ class DriverDto {
   }
 }
 
-module.exports = DriverDto;
+module.exports = DriverRequestDTO;

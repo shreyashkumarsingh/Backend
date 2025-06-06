@@ -7,7 +7,8 @@ const LoginRequestDTO = require('../dto/request/LoginRequestDTO');
 const RegisterRequestDTO = require('../dto/request/RegisterRequestDTO');
 const AuthResponseDTO = require('../dto/response/AuthResponseDTO');
 const RegistrationDto = require('../dto/request/RegistrationDto');
- const VehicleDto = require('../dto/request/VehicleRequestDTO');
+const VehicleDto = require('../dto/request/VehicleRequestDTO');
+const DriverRequestDTO = require('../dto/request/DriverRequestDTO');
 
 class AuthService {
   static async login(loginData) {
@@ -195,24 +196,24 @@ class AuthService {
   }
 
   // =============driver_tbl new registration========================
-  static async registerDriver(registerData){
-    const registerDTO = new RegistrationDto(registerData);
-    const validation = registerDTO.validate();
-    
-    if (!validation.isValid) {
-      throw new Error(validation.errors.join(', '));
-    }
+ static async registerDriver(registerData) {
+    const registerDTO = new DriverRequestDTO(registerData);
+    // const validation = registerDTO.validate();
 
-    // Check if user already exists
-    const existingUser = await User.findOne({
-      where: { email: registerDTO.email }
-    });
+    // if (!validation.isValid) {
+    //   throw new Error(validation.errors.join(', '));
+    // }
+    // // Check if user already exists
+    // const existingUser = await User.findOne({
+    //   where: { email: registerDTO.email }
+    // });
 
-    if (existingUser) {
-      throw new Error('User already exists with this email');
-    }
+    // if (existingUser) {
+    //   throw new Error('User already exists with this email');
+    // }
 
     // Additional logic for driver registration can be implemented here
+    return registerDTO;
   }
   static async registerVehicle(registerData) {
  

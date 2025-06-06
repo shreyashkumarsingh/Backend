@@ -1,4 +1,4 @@
-class DriverResponseDto {
+class DriverResponseDTO {
   constructor(driver) {
     this.d_id = driver.d_id;
     this.license_no = driver.license_no;
@@ -22,4 +22,4 @@ class DriverResponseDto {
   }
 }
 
-module.exports = DriverResponseDto;
+module.exports = DriverResponseDTO;
