@@ -19,7 +19,7 @@ class DriverResponseDTO {
         status: driver.registration.status
       };
     }
-  }
+  } 
 }
 
 module.exports = DriverResponseDTO;

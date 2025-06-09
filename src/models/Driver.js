@@ -37,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(50),
         allowNull: false,
         defaultValue: 'active'
+      },
+      address: {
+        type: DataTypes.STRING(255),
+        allowNull: true // Optional address field
       }
     },
     {

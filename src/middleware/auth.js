@@ -1,5 +1,5 @@
 const JWTConfig = require('../config/jwt');
-const User = require('../models/User');
+const db = require('../models');
 const BaseResponseDTO = require('../dto/response/BaseResponseDTO');
 
 const authenticateToken = async (req, res, next) => {
@@ -15,11 +15,13 @@ const authenticateToken = async (req, res, next) => {
 
     const decoded = JWTConfig.verifyAccessToken(token);
     
+    console.log(decoded);
     // Get user from database
-    const user = await User.findByPk(decoded.userId, {
+    const user = await db.User.findByPk(decoded.userId, {
       attributes: { exclude: ['password', 'refreshToken'] }
     });
 
+    console.log(user);
     if (!user || !user.isActive) {
       return res.status(401).json(
         BaseResponseDTO.error('Invalid or expired token')

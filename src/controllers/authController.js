@@ -20,6 +20,20 @@ class AuthController {
     }
   }
 
+  //
+
+    // driver_status_tbl registration
+  static async driverstatus(req, res) {
+    try {
+      console.log('Registering driver status with data:', req.body);
+      const result = await AuthService.driverstatus(req.body);
+      res.status(201).json(BaseResponseDTO.success(result, 'Driver status registration successful'));
+    } catch (error) {
+      res.status(400).json(BaseResponseDTO.error(error.message));
+    }
+  }
+
+
   static async registerNew(req, res) {
     try {
       console.log('Registering new user with data:', req.body);
@@ -30,15 +44,15 @@ class AuthController {
     }
   }
 
-  //driver_tbl registration
-  static async registerDriver(req,res){
-    try{
-      console.log('Registering new driver with data:', req.body);
-      const result = await AuthService.registerDriver(req.body);
-      res.status(201).json(BaseResponseDTO.success(result, 'Driver registration successful'));
-    }catch (error){
-      res.status(400).json(BaseResponseDTO.error(error.message));
-    }
+  // driver_tbl registration
+static async registerDriver(req, res) {
+  try {
+    console.log('Registering new driver with data:', req.body);
+    const result = await AuthService.registerDriver(req.body, req.user); // passing req.user
+    res.status(201).json(BaseResponseDTO.success(result, 'Driver registration successful'));
+  } catch (error) {
+    res.status(400).json(BaseResponseDTO.error(error.message));
+  }
   }
   //vehicle registration
   static async registerVehicle(req, res) {
